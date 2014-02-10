@@ -9,6 +9,7 @@
 
 #region Using Statements
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 #endregion
 
 namespace CoinHunt
@@ -40,17 +41,27 @@ namespace CoinHunt
 
         void MainMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            LoadingScreen.Load(ScreenManager, true, e.PlayerIndex, new MainMenuScreen());
-            //PlayerIndex controllingPlayer = PlayerIndex.One;
-            //for (PlayerIndex index = PlayerIndex.One; index <= PlayerIndex.Four; index++)
-            //{
-            //    //if (input.IsMenuSelect(ControllingPlayer, out index))
-            //    //if (GamePad.GetState(index).Buttons.Start == ButtonState.Pressed)
-            //    {
-            //        controllingPlayer = index;
-            //        break;
-            //    }
-            //}
+            PlayerIndex controllingPlayer = PlayerIndex.One;
+#if XBOX360
+            for (PlayerIndex index = PlayerIndex.One; index <= PlayerIndex.Four; index++)
+            {
+                if (GamePad.GetState(index).Buttons.Start == ButtonState.Pressed)
+                {
+                    controllingPlayer = index;
+                    break;
+                }
+            }
+#else
+            for (PlayerIndex index = PlayerIndex.One; index <= PlayerIndex.Four; index++)
+            {
+                if (Keyboard.GetState(index).IsKeyDown(Keys.Enter))
+                {
+                    controllingPlayer = index;
+                    break;
+                }
+            }
+#endif
+            LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen(), new MainMenuScreen());
         }
 
         #endregion
