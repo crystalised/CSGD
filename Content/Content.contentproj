@@ -209,7 +209,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SplashScreen.jpg">
+    <Compile Include="SplashScreen.png">
       <Name>SplashScreen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

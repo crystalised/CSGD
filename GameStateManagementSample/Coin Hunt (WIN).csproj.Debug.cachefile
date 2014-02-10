@@ -14,7 +14,6 @@ Content\skybox2.xnb
 Content\skybox3.xnb
 Content\skybox4.xnb
 Content\skybox5.xnb
-Content\SplashScreen.xnb
 Content\Ship.xnb
 Content\TyveKrone.xnb
 Content\T-88.xnb
@@ -31,6 +30,7 @@ Content\ground_0.xnb
 Content\ShipDiffuse_0.xnb
 Content\20kr_2003_0.xnb
 Content\UV1_0.xnb
+Content\SplashScreen.xnb
 Content\xactAudio.xgs
 Content\waveBank.xwb
 Content\soundBank.xsb

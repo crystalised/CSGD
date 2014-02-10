@@ -27,7 +27,7 @@ namespace CoinHunt
         public MainMenuScreen()
             : base("Coin Hunt")
         {
-            ScreenManager.AddScreen(new BackgroundScreen(), null);
+            //ScreenManager.AddScreen(new BackgroundScreen(), null);
 
             // Create our menu entries.
             MenuEntry playGameMenuEntry = new MenuEntry("Play Game");
