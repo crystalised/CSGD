@@ -26,11 +26,7 @@ namespace CoinHunt
         MenuEntry splitScreenMenuEntry;
         MenuEntry vibrateMenuEntry;
         MenuEntry musicMenuEntry;
-        MenuEntry inMusicMenuEntry;
-        MenuEntry deMusicMenuEntry;
         MenuEntry soundMenuEntry;
-        MenuEntry inSoundMenuEntry;
-        MenuEntry deSoundMenuEntry;
 
         public enum splitScreenType
         {
@@ -57,11 +53,7 @@ namespace CoinHunt
             splitScreenMenuEntry = new MenuEntry(string.Empty);
             vibrateMenuEntry = new MenuEntry(string.Empty);
             musicMenuEntry = new MenuEntry(string.Empty);
-            inMusicMenuEntry = new MenuEntry(string.Empty);
-            deMusicMenuEntry = new MenuEntry(string.Empty);
             soundMenuEntry = new MenuEntry(string.Empty);
-            inSoundMenuEntry = new MenuEntry(string.Empty);
-            deSoundMenuEntry = new MenuEntry(string.Empty);
 
             SetMenuEntryText();
 
@@ -71,22 +63,14 @@ namespace CoinHunt
             splitScreenMenuEntry.Selected += splitScreenMenuEntrySelected;
             vibrateMenuEntry.Selected += vibrateScreenMenuEntrySelected;
             musicMenuEntry.Selected += musicMenuEntrySelected;
-            inMusicMenuEntry.Selected += inMusicMenuEntrySelected;
-            deMusicMenuEntry.Selected += deMusicMenuEntrySelected;
             soundMenuEntry.Selected += soundMenuEntrySelected;
-            inSoundMenuEntry.Selected += inSoundMenuEntrySelected;
-            deSoundMenuEntry.Selected += deSoundMenuEntrySelected;
             back.Selected += OnCancel;
             
             // Add entries to the menu.
             MenuEntries.Add(splitScreenMenuEntry);
             MenuEntries.Add(vibrateMenuEntry);
             MenuEntries.Add(musicMenuEntry);
-            MenuEntries.Add(inMusicMenuEntry);
-            MenuEntries.Add(deMusicMenuEntry);
             MenuEntries.Add(soundMenuEntry);
-            MenuEntries.Add(inSoundMenuEntry);
-            MenuEntries.Add(deSoundMenuEntry);
             MenuEntries.Add(back);
         }
 
@@ -98,12 +82,8 @@ namespace CoinHunt
         {
             splitScreenMenuEntry.Text = "Split Screen Orientation: " + currentSST;
             vibrateMenuEntry.Text = "Vibration: " + (vibrate ? "On" : "Off");
-            musicMenuEntry.Text = "Music volume: " + (int)(Settings.musicVolume * 100 + 0.5);
-            inMusicMenuEntry.Text = "Increase music volume";
-            deMusicMenuEntry.Text = "Decrease music volume";
-            soundMenuEntry.Text = "Sound volume: " + (int)(Settings.soundVolume * 100 + 0.5);
-            inSoundMenuEntry.Text = "Increase sound volume";
-            deSoundMenuEntry.Text = "Decrease sound volume";
+            musicMenuEntry.Text = "Music volume: " + (int)(Settings.musicVolume * 100);
+            soundMenuEntry.Text = "Sound volume: " + (int)(Settings.soundVolume * 100);
         }
 
 
@@ -143,33 +123,10 @@ namespace CoinHunt
             ScreenManager.soundCue = ScreenManager.soundBank.GetCue("clickCue2");
             ScreenManager.soundCue.Play();
 
-            SetMenuEntryText();
-        }
-
-        void inMusicMenuEntrySelected(object sender, PlayerIndexEventArgs e)
-        {
-            ScreenManager.soundCue = ScreenManager.soundBank.GetCue("clickCue2");
-            ScreenManager.soundCue.Play();
-
             Settings.musicVolume += 0.05f;
-            if (Settings.musicVolume > 1.0f)
+            if (Settings.musicVolume > 1.01f)
             {
-                Settings.musicVolume = 1.0f;
-            }
-            ScreenManager.audioEngine.GetCategory("backgroundMusic").SetVolume(Settings.musicVolume);
-
-            SetMenuEntryText();
-        }
-
-        void deMusicMenuEntrySelected(object sender, PlayerIndexEventArgs e)
-        {
-            ScreenManager.soundCue = ScreenManager.soundBank.GetCue("clickCue2");
-            ScreenManager.soundCue.Play();
-
-            Settings.musicVolume -= 0.05f;
-            if (Settings.musicVolume < 0)
-            {
-                Settings.musicVolume = 0;
+                Settings.musicVolume = 0.0f;
             }
             ScreenManager.audioEngine.GetCategory("backgroundMusic").SetVolume(Settings.musicVolume);
 
@@ -181,39 +138,14 @@ namespace CoinHunt
             ScreenManager.soundCue = ScreenManager.soundBank.GetCue("clickCue2");
             ScreenManager.soundCue.Play();
 
-            SetMenuEntryText();
-        }
-
-        void inSoundMenuEntrySelected(object sender, PlayerIndexEventArgs e)
-        {
-            ScreenManager.soundCue = ScreenManager.soundBank.GetCue("clickCue2");
-            ScreenManager.soundCue.Play();
-
             Settings.soundVolume += 0.05f;
-            if (Settings.soundVolume > 1.0f)
+            if (Settings.soundVolume > 1.01f)
             {
-                Settings.soundVolume = 1.0f;
+                Settings.soundVolume = 0.0f;
             }
-            ScreenManager.audioEngine.GetCategory("soundEffects").SetVolume(Settings.soundVolume);
 
             SetMenuEntryText();
         }
-
-        void deSoundMenuEntrySelected(object sender, PlayerIndexEventArgs e)
-        {
-            ScreenManager.soundCue = ScreenManager.soundBank.GetCue("clickCue2");
-            ScreenManager.soundCue.Play();
-
-            Settings.soundVolume -= 0.05f;
-            if (Settings.soundVolume < 0)
-            {
-                Settings.soundVolume = 0;
-            }
-            ScreenManager.audioEngine.GetCategory("soundEffects").SetVolume(Settings.soundVolume);
-
-            SetMenuEntryText();
-        }
-
         #endregion
     }
 }
