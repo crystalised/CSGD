@@ -214,3 +214,5 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 *.cachefile
+*.cachefile
+GameStateManagementSample/Coin Hunt (WIN).csproj.Debug.cachefile
