@@ -98,12 +98,11 @@ namespace CoinHunt
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
+            #region load content
+            // load content
             gameFont = content.Load<SpriteFont>("gamefont");
             hudFont = content.Load<SpriteFont>("hudfont");
-
-           
             shipModels = new Model[3];
-            // load content 
             spriteFont    = content.Load<SpriteFont>("gamefont");
             shipModels[0] = content.Load<Model>("ship");
             shipModels[1] = content.Load<Model>("SpaceShip");
@@ -113,6 +112,10 @@ namespace CoinHunt
 
             blank = new Texture2D(ScreenManager.GraphicsDevice, 1, 1);
             blank.SetData(new[] { Color.White });
+
+            #endregion
+
+            #region Setup basic effect
 
             //Setup Basic Effect for ground
             effect = new BasicEffect(ScreenManager.GraphicsDevice);
@@ -128,6 +131,10 @@ namespace CoinHunt
             effect.FogColor = Color.Black.ToVector3();
             effect.FogStart = 10000;
             effect.FogEnd = 50000;
+
+            #endregion
+
+            #region Setup Environment map effect
 
             //Setup Environment Map Effect for ship
             envEffect = new EnvironmentMapEffect(ScreenManager.GraphicsDevice);
@@ -149,7 +156,9 @@ namespace CoinHunt
             envEffect.FresnelFactor = 1.0f;
             envEffect.EnvironmentMapSpecular = Vector3.Zero;
 
+            #endregion
 
+            #region Setup the ships
 
             // setup the ship
             ship = new Ship[3];
@@ -159,6 +168,10 @@ namespace CoinHunt
 
             ship[0].setPos(new Vector3(1000, 500, 0));
             ship[1].setPos(new Vector3(-1000, 500, 0));
+
+            #endregion
+
+            #region Split viewports
 
             // Setup player 1 and 2 viewport
             playerOneViewport = new Viewport
@@ -228,6 +241,10 @@ namespace CoinHunt
             camera0.Reset();
             camera1.Reset();
 
+            #endregion
+
+            #region Setup coins
+
             coinArray = new Coin[25];
             coinsLeft = 25;
 
@@ -238,6 +255,8 @@ namespace CoinHunt
                 coinArray[i].Location.Y = random.Next(  6000, 20000);
                 coinArray[i].Location.Z = random.Next(-60000, 60000);
             }
+
+            #endregion
 
             // A real game would probably have more content than this sample, so
             // it would take longer to load. We simulate that by delaying for a
@@ -278,6 +297,8 @@ namespace CoinHunt
                 pauseAlpha = Math.Min(pauseAlpha + 1f / 32, 1);
             else
                 pauseAlpha = Math.Max(pauseAlpha - 1f / 32, 0);
+
+            #region Game Active
 
             if (IsActive)
             {
@@ -360,6 +381,19 @@ namespace CoinHunt
                 }
             }
 
+            #endregion
+
+            #region Game Over
+            if (gameOver)
+            {
+                //Disable bloomeffect when not in game over
+                ScreenManager.bloom.Enabled = false;
+                ScreenManager.bloom.Visible = false;
+            }
+            #endregion
+
+            #region Vibration control
+
             if (isVibrating)
             {
                 timePassed = DateTime.Now - startVibration;
@@ -378,6 +412,8 @@ namespace CoinHunt
                     isVibrating2 = false;
                 }
             }
+
+            #endregion
         }
 
         /// <summary>
@@ -444,17 +480,18 @@ namespace CoinHunt
                 ScreenManager.bloom.Settings = BloomSettings.PresetSettings[bloomSettingsIndex];
             }
 
+            #region gameover
+
             if (gameOver)
             {
                 if (input.IsMenuSelect(PlayerIndex.One, out dummy) || input.IsMenuSelect(PlayerIndex.Two, out dummy))
                 {
-                    //Disable bloomeffect when not in gameplayscreen
-                    ScreenManager.bloom.Enabled = false;
-                    ScreenManager.bloom.Visible = false;
                     LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen(),
                                                            new MainMenuScreen());
                 }
             }
+
+            #endregion
         }
 
         /// <summary>
@@ -471,6 +508,7 @@ namespace CoinHunt
             Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
             Rectangle safeArea = viewport.TitleSafeArea;
 
+            //Start bloom effect draw
             ScreenManager.bloom.BeginDraw();
 
             // This game has a black background. Why? Because!
@@ -488,7 +526,8 @@ namespace CoinHunt
             DrawOverlayTextDebug(); 
 #endif
 
-            // Our player and enemy are both actually just text strings.
+            #region Draw Sprite
+
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
 
             spriteBatch.Begin();
@@ -553,6 +592,8 @@ namespace CoinHunt
 
             spriteBatch.End();
 
+            #endregion
+
             // If the game is transitioning on or off, fade it out to black.
             if (TransitionPosition > 0 || pauseAlpha > 0)
             {
@@ -588,6 +629,7 @@ namespace CoinHunt
             ScreenManager.GraphicsDevice.Viewport = oldViewport;
         }
 
+        //Draw ship which uses Environment Map Effect
         private void DrawShip(Model m, Matrix world, Matrix view, Matrix projection, EnvironmentMapEffect be)
         {
             Matrix[] transforms = new Matrix[m.Bones.Count];
@@ -609,6 +651,7 @@ namespace CoinHunt
             }
         }
 
+        //Draw model which uses basic effect (coins/ground)
         private void DrawModel(Model m, Matrix world, Matrix view, Matrix projection, BasicEffect be)
         {
             Matrix[] transforms = new Matrix[m.Bones.Count];
