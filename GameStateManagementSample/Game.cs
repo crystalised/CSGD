@@ -59,8 +59,8 @@ namespace CoinHunt
             //Components.Add(particles);
 
             // Activate the first screens.
-            screenManager.AddScreen(new BackgroundScreen(), null);
-            screenManager.AddScreen(new MainMenuScreen(), null);
+            screenManager.AddScreen(new SplashBackgroundScreen(), null);
+            screenManager.AddScreen(new SplashScreen(), null);
         }
 
 

@@ -88,6 +88,8 @@
     <Compile Include="Screens\OptionsMenuScreen.cs" />
     <Compile Include="Screens\PauseMenuScreen.cs" />
     <Compile Include="PlayerIndexEventArgs.cs" />
+    <Compile Include="Screens\SplashBackgroundScreen.cs" />
+    <Compile Include="Screens\SplashScreen.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Ship.cs" />
   </ItemGroup>

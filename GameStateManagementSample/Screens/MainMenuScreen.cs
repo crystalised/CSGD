@@ -18,8 +18,8 @@ namespace CoinHunt
     /// </summary>
     class MainMenuScreen : MenuScreen
     {
-        #region Initialization
 
+        #region Initialization
 
         /// <summary>
         /// Constructor fills in the menu contents.
@@ -27,6 +27,8 @@ namespace CoinHunt
         public MainMenuScreen()
             : base("Coin Hunt")
         {
+            ScreenManager.AddScreen(new BackgroundScreen(), null);
+
             // Create our menu entries.
             MenuEntry playGameMenuEntry = new MenuEntry("Play Game");
             MenuEntry controlsMenuEntry = new MenuEntry("Controls");
