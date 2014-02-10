@@ -216,3 +216,5 @@ pip-log.txt
 *.cachefile
 *.cachefile
 GameStateManagementSample/Coin Hunt (WIN).csproj.Debug.cachefile
+*.suo
+*.cachefile
