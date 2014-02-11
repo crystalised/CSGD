@@ -29,6 +29,8 @@ namespace CoinHunt
         SpriteFont gameFont;
         SpriteFont hudFont;
 
+        string p1Hud, p2Hud;
+
         Texture2D blank;
 
         // Viewport and camera for different players
@@ -711,17 +713,17 @@ namespace CoinHunt
 #if XBOX360
             if ((PlayerIndex)controllingPlayer == PlayerIndex.One) //check if first controller is player1
             {
-                string p1Hud = playerName + "\nCoins Collected: " + p1Score;
-                string p2Hud = "Player2\nCoins Collected: " + p2Score;
+                p1Hud = playerName + "\nCoins Collected: " + p1Score;
+                p2Hud = "Player2\nCoins Collected: " + p2Score;
             }
             else
             {
-                string p1Hud = "Player1\nCoins Collected: " + p1Score;
-                string p2Hud = playerName + "\nCoins Collected: " + p2Score;
+                p1Hud = "Player1\nCoins Collected: " + p1Score;
+                p2Hud = playerName + "\nCoins Collected: " + p2Score;
             }
 #else
-            string p1Hud = "Player 1\nCoins Collected: " + p1Score;
-            string p2Hud = "Player2\nCoins Collected: " + p2Score;
+            p1Hud = "Player 1\nCoins Collected: " + p1Score;
+            p2Hud = "Player2\nCoins Collected: " + p2Score;
 #endif
 
             Viewport viewport = ScreenManager.Game.GraphicsDevice.Viewport;
