@@ -15,6 +15,9 @@ Content\SkyboxesTex\skybox4.xnb
 Content\SkyboxesTex\skybox5.xnb
 Content\Textures\SplashScreen.xnb
 Content\Models\20kr_2003.xnb
+Content\Particles\explosion.xnb
+Content\Particles\fire.xnb
+Content\Particles\smoke.xnb
 Content\Models\Ship.xnb
 Content\Models\TyveKrone.xnb
 Content\Models\T-88.xnb
@@ -26,6 +29,8 @@ Content\Fonts\infofont.xnb
 Content\BloomEffect\BloomCombine.xnb
 Content\BloomEffect\BloomExtract.xnb
 Content\BloomEffect\GaussianBlur.xnb
+Content\Particles\ParticleEffect.xnb
+Content\Particles\ExplosionSettings.xnb
 Content\Models\ground_0.xnb
 Content\Models\ShipDiffuse_0.xnb
 Content\Models\20kr_2003_0.xnb

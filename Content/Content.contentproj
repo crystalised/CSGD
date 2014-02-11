@@ -238,10 +238,6 @@
       <Project>{2aef1b32-62f0-45f3-888f-e455c1c99204}</Project>
       <Name>ParticleSettings %28WIN%29</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ParticleSettings\ParticleSettings %28XBOX%29.csproj">
-      <Project>{6c966d0a-e0ae-4f6c-84a5-3323568aabb0}</Project>
-      <Name>ParticleSettings %28XBOX%29</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
