@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 #endregion
 
-namespace Particle3DSample
+namespace CoinHunt
 {
     /// <summary>
     /// Settings class describes all the tweakable options used

@@ -100,15 +100,15 @@ namespace CoinHunt
 
             #region load content
             // load content
-            gameFont = content.Load<SpriteFont>("gamefont");
-            hudFont = content.Load<SpriteFont>("hudfont");
+            gameFont = content.Load<SpriteFont>("Fonts/gamefont");
+            hudFont = content.Load<SpriteFont>("Fonts/hudfont");
             shipModels = new Model[3];
-            spriteFont    = content.Load<SpriteFont>("gamefont");
-            shipModels[0] = content.Load<Model>("ship");
+            spriteFont = content.Load<SpriteFont>("Fonts/gamefont");
+            shipModels[0] = content.Load<Model>("Models/ship");
             shipModels[1] = content.Load<Model>("SpaceShip");
-            shipModels[2] = content.Load<Model>("T-88");
-            groundModel   = content.Load<Model>("Ground");
-            coinModel     = content.Load<Model>("TyveKrone");
+            shipModels[2] = content.Load<Model>("Models/T-88");
+            groundModel = content.Load<Model>("Models/Ground");
+            coinModel = content.Load<Model>("Models/TyveKrone");
 
             blank = new Texture2D(ScreenManager.GraphicsDevice, 1, 1);
             blank.SetData(new[] { Color.White });
@@ -142,7 +142,7 @@ namespace CoinHunt
             Color[] facedata = new Color[256 * 256];
             for (int i = 0; i < 6; i++)
             {
-                envEffect.Texture = content.Load<Texture2D>("skybox" + i.ToString());
+                envEffect.Texture = content.Load<Texture2D>("SkyboxesTex/skybox" + i.ToString());
                 envEffect.Texture.GetData<Color>(facedata);
                 texture.SetData<Color>((CubeMapFace)i, facedata);
             }
@@ -535,7 +535,7 @@ namespace CoinHunt
             String gameOver = "Game Over!";
             String gameWin = "You win!";
             String gameLose = "You lose!";
-            Texture2D buttonA = content.Load<Texture2D>("ButtonA");
+            Texture2D buttonA = content.Load<Texture2D>("Textures/ButtonA");
             Vector2 aButtonPos = new Vector2(580, 345);
             Vector2 exitTxtPos = new Vector2(625, 335);
 

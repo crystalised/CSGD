@@ -149,8 +149,8 @@ namespace CoinHunt
             bloom.Visible = false;
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            font = content.Load<SpriteFont>("menufont");
-            blankTexture = content.Load<Texture2D>("blank");
+            font = content.Load<SpriteFont>("Fonts/menufont");
+            blankTexture = content.Load<Texture2D>("Textures/blank");
 
             // Tell each of the screens to load their content.
             foreach (GameScreen screen in screens)

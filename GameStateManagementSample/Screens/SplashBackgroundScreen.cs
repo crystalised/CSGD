@@ -55,7 +55,7 @@ namespace CoinHunt
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-            backgroundTexture = content.Load<Texture2D>("SplashScreen");
+            backgroundTexture = content.Load<Texture2D>("Textures/SplashScreen");
         }
 
 

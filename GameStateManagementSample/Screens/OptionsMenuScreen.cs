@@ -143,6 +143,7 @@ namespace CoinHunt
             {
                 Settings.soundVolume = 0.0f;
             }
+            ScreenManager.audioEngine.GetCategory("soundEffects").SetVolume(Settings.soundVolume);
 
             SetMenuEntryText();
         }

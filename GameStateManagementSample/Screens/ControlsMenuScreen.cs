@@ -44,7 +44,7 @@ namespace CoinHunt
         {
             ContentManager content = ScreenManager.Game.Content;
 
-            ControllerPic = content.Load<Texture2D>("controller");
+            ControllerPic = content.Load<Texture2D>("Textures/controller");
         }   
 
         public override void Draw(GameTime gameTime)

@@ -62,20 +62,20 @@ namespace CoinHunt
             if (content == null)
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-            hudFont = content.Load<SpriteFont>("hudfont");
-            infoFont = content.Load<SpriteFont>("infofont");
+            hudFont = content.Load<SpriteFont>("Fonts/hudfont");
+            infoFont = content.Load<SpriteFont>("Fonts/infofont");
 
             blank = new Texture2D(ScreenManager.GraphicsDevice, 1, 1);
             blank.SetData(new[] { Color.White });
 
-            LTStick = content.Load<Texture2D>("LTStick");
+            LTStick = content.Load<Texture2D>("Textures/LTStick");
 
             shipModels = new Model[3];
 
             // load content 
-            shipModels[0] = content.Load<Model>("ship");
+            shipModels[0] = content.Load<Model>("Models/ship");
             shipModels[1] = content.Load<Model>("SpaceShip");
-            shipModels[2] = content.Load<Model>("T-88");
+            shipModels[2] = content.Load<Model>("Models/T-88");
 
             if (OptionsMenuScreen.currentSST == OptionsMenuScreen.splitScreenType.Horizontal)
             {

@@ -51,7 +51,7 @@ namespace CoinHunt
         {
             ContentManager content = ScreenManager.Game.Content;
 
-            gameFont = content.Load<SpriteFont>("gamefont");
+            gameFont = content.Load<SpriteFont>("Fonts/gamefont");
         }   
 
         public override void Draw(GameTime gameTime)

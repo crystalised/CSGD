@@ -71,7 +71,7 @@ namespace CoinHunt
         {
             foreach (string asset in preloadAssets)
             {
-                Content.Load<object>(asset);
+                Content.Load<object>("Textures/"+asset);
             }
         }
 

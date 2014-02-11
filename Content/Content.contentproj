@@ -16,45 +16,50 @@
     <RootNamespace>XboxContent</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Ground.x">
+    <Compile Include="Models\Ground.x">
       <Name>Ground</Name>
       <Importer>XImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
-    <Compile Include="LTStick.tga">
+    <Compile Include="Textures\LTStick.tga">
       <Name>LTStick</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Ship.fbx">
+    <Compile Include="Models\Ship.fbx">
       <Name>Ship</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
+    <Compile Include="xactAudio.xap">
+      <Name>xactAudio</Name>
+      <Importer>XactImporter</Importer>
+      <Processor>XactProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="blank.png">
+    <Compile Include="Textures\blank.png">
       <Name>blank</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="menufont.spritefont">
+    <Compile Include="Fonts\menufont.spritefont">
       <Name>menufont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="gamefont.spritefont">
+    <Compile Include="Fonts\gamefont.spritefont">
       <Name>gamefont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="gradient.png">
+    <Compile Include="Textures\gradient.png">
       <Name>gradient</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -70,7 +75,7 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.XImporter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ButtonA.png">
+    <Compile Include="Textures\ButtonA.png">
       <Name>ButtonA</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -78,7 +83,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ButtonB.png">
+    <Compile Include="Textures\ButtonB.png">
       <Name>ButtonB</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -86,7 +91,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TyveKrone.fbx">
+    <Compile Include="Models\TyveKrone.fbx">
       <Name>TyveKrone</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
@@ -94,31 +99,24 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="20kr_2003.jpg">
-      <Name>20kr_2003</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Body.jpg">
+    <Compile Include="Models\Body.jpg">
       <Name>Body</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="hudfont.spritefont">
+    <Compile Include="Fonts\hudfont.spritefont">
       <Name>hudfont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
-    <Compile Include="infofont.spritefont">
+    <Compile Include="Fonts\infofont.spritefont">
       <Name>infofont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
-    <Compile Include="T-88.fbx">
+    <Compile Include="Models\T-88.fbx">
       <Name>T-88</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
@@ -132,85 +130,85 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="menu.jpg">
+    <Compile Include="Textures\menu.jpg">
       <Name>menu</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="controller.png">
+    <Compile Include="Textures\controller.png">
       <Name>controller</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="skybox0.jpg">
+    <Compile Include="SkyboxesTex\skybox0.jpg">
       <Name>skybox0</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="skybox1.jpg">
+    <Compile Include="SkyboxesTex\skybox1.jpg">
       <Name>skybox1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="skybox2.jpg">
+    <Compile Include="SkyboxesTex\skybox2.jpg">
       <Name>skybox2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="skybox3.jpg">
+    <Compile Include="SkyboxesTex\skybox3.jpg">
       <Name>skybox3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="skybox4.jpg">
+    <Compile Include="SkyboxesTex\skybox4.jpg">
       <Name>skybox4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="skybox5.jpg">
+    <Compile Include="SkyboxesTex\skybox5.jpg">
       <Name>skybox5</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="xactAudio.xap">
-      <Name>xactAudio</Name>
-      <Importer>XactImporter</Importer>
-      <Processor>XactProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ParticleEffect.fx">
+    <Compile Include="Particles\ParticleEffect.fx">
       <Name>ParticleEffect</Name>
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BloomCombine.fx">
+    <Compile Include="Textures\SplashScreen.png">
+      <Name>SplashScreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BloomEffect\BloomCombine.fx">
       <Name>BloomCombine</Name>
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
     </Compile>
-    <Compile Include="BloomExtract.fx">
+    <Compile Include="BloomEffect\BloomExtract.fx">
       <Name>BloomExtract</Name>
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
     </Compile>
-    <Compile Include="GaussianBlur.fx">
+    <Compile Include="BloomEffect\GaussianBlur.fx">
       <Name>GaussianBlur</Name>
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SplashScreen.png">
-      <Name>SplashScreen</Name>
+    <Compile Include="Models\20kr_2003.jpg">
+      <Name>20kr_2003</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
