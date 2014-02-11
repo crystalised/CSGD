@@ -347,6 +347,25 @@ namespace CoinHunt
             spriteBatch.End();
         }
 
+        //gamertag
+        string gamertag(PlayerIndex player)
+        {
+            SignedInGamer gamer = Gamer.SignedInGamers[player];
+
+            if (gamer == null)
+                return null;
+            else
+                return gamer.Gamertag;
+
+        }
+
+        public string displayName(PlayerIndex player)
+        {
+            if (gamertag(player) != null)
+                return gamertag(player);
+            else
+                return player.ToString();
+        } 
 
         #endregion
     }

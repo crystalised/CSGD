@@ -508,7 +508,7 @@ namespace CoinHunt
 
             // This game has a black background. Why? Because!
             ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
-                                               Color.AntiqueWhite, 0, 0);
+                                               Color.Black, 0, 0);
 
             DrawScene(gameTime, playerOneViewport, camera0.View, camera0.Projection);
             DrawScene(gameTime, playerTwoViewport, camera1.View, camera1.Projection);
@@ -698,8 +698,13 @@ namespace CoinHunt
         private void DrawOverlayText()
         {
             ScreenManager.SpriteBatch.Begin();
-            string p1Hud = "Coins Collected: " + p1Score;
-            string p2Hud = "Coins Collected: " + p2Score;
+#if XBOX360
+            string p1Hud = "Coins Collected: " + p1Score + ScreenManager.displayName(PlayerIndex.One);
+            string p2Hud = "Coins Collected: " + p2Score + ScreenManager.displayName(PlayerIndex.Two);
+#else
+            string p1Hud = "Player 1\nCoins Collected: " + p1Score;
+            string p2Hud = "Player2\nCoins Collected: " + p2Score;
+#endif
 
             Viewport viewport = ScreenManager.Game.GraphicsDevice.Viewport;
 

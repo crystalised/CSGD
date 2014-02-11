@@ -10,6 +10,7 @@
 #region Using Statements
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.GamerServices;
 #endregion
 
 namespace CoinHunt
@@ -56,6 +57,9 @@ namespace CoinHunt
 
             Components.Add(screenManager);
             Components.Add(new FrameRateMonitor(this, false));
+#if XBOX360
+            Components.Add(new GamerServicesComponent(this));
+#endif
             //Components.Add(particles);
 
             // Activate the first screens.
