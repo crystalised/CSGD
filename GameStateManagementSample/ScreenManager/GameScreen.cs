@@ -178,7 +178,7 @@ namespace CoinHunt
             internal set { controllingPlayer = value; }
         }
 
-        PlayerIndex? controllingPlayer;
+        public PlayerIndex? controllingPlayer;
 
 
         /// <summary>

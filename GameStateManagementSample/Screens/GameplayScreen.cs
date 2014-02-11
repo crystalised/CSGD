@@ -428,11 +428,13 @@ namespace CoinHunt
             KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
             GamePadState gamePadState = input.CurrentGamePadStates[playerIndex];
 
+#if XBOX360
             SignedInGamer gamer = Gamer.SignedInGamers[playerIndex]; 
             if (gamer != null) 
                 playerName = gamer.Gamertag; 
             else 
                 Guide.ShowSignIn(1, false);
+#endif
 
             // The game pauses either if the user presses the pause button, or if
             // they unplug the active gamepad. This requires us to keep track of
@@ -707,7 +709,7 @@ namespace CoinHunt
         {
             ScreenManager.SpriteBatch.Begin();
 #if XBOX360
-            if (PlayerIndex controllingPlayer == PlayerIndex.One) //check if first controller is player1
+            if ((PlayerIndex)controllingPlayer == PlayerIndex.One) //check if first controller is player1
             {
                 string p1Hud = playerName + "\nCoins Collected: " + p1Score;
                 string p2Hud = "Player2\nCoins Collected: " + p2Score;
