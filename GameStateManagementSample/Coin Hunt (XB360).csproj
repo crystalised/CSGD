@@ -22,7 +22,7 @@
     <TileImage>Background.png</TileImage>
     <TileTitle>GameStateManagementSample</TileTitle>
     <ApplicationIcon>Game.ico</ApplicationIcon>
-    <Thumbnail>GameIcon.png</Thumbnail>
+    <Thumbnail>CoinHuntThumbnail.png</Thumbnail>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -92,6 +92,7 @@
     <Compile Include="Ship.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CoinHuntThumbnail.png" />
     <Content Include="Game.ico" />
     <Content Include="GameIcon.png" />
     <Content Include="GameThumbnail.png" />
