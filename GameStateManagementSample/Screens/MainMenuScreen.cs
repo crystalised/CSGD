@@ -25,7 +25,7 @@ namespace CoinHunt
         /// Constructor fills in the menu contents.
         /// </summary>
         public MainMenuScreen()
-            : base("Coin Hunt")
+            : base("")
         {
             //ScreenManager.AddScreen(new BackgroundScreen(), null);
 

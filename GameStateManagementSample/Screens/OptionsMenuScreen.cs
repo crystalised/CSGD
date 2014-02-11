@@ -47,7 +47,7 @@ namespace CoinHunt
         /// Constructor.
         /// </summary>
         public OptionsMenuScreen()
-            : base("Options")
+            : base("")
         {
             // Create our menu entries.
             splitScreenMenuEntry = new MenuEntry(string.Empty);
