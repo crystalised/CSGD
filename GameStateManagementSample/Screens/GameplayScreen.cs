@@ -308,8 +308,8 @@ namespace CoinHunt
                 // Update the ships
                 if (!gameOver)
                 {
-                    ship[0].Update(gameTime, PlayerIndex.One);
-                    ship[1].Update(gameTime, PlayerIndex.Two);
+                    ship[0].Update(gameTime, (PlayerIndex)playerIndex);
+                    ship[1].Update(gameTime, (PlayerIndex)ScreenManager.PlayerTwo);
                 }
 
                 //collison check for players and coin
@@ -324,7 +324,7 @@ namespace CoinHunt
                             {
                                 if (isVibrating == false)
                                 {
-                                    GamePad.SetVibration(PlayerIndex.One, 1.0f, 1.0f);
+                                    GamePad.SetVibration((PlayerIndex)playerIndex, 1.0f, 1.0f);
                                     isVibrating = true;
                                     startVibration = (DateTime.Now);
                                 }
@@ -344,7 +344,7 @@ namespace CoinHunt
                             {
                                 if (isVibrating2 == false)
                                 {
-                                    GamePad.SetVibration(PlayerIndex.Two, 1.0f, 1.0f);
+                                    GamePad.SetVibration((PlayerIndex)ScreenManager.PlayerTwo, 1.0f, 1.0f);
                                     isVibrating2 = true;
                                     startVibration2 = (DateTime.Now);
                                 }
@@ -394,7 +394,7 @@ namespace CoinHunt
                 timePassed = DateTime.Now - startVibration;
                 if (timePassed.TotalSeconds >= 0.5f)
                 {
-                    GamePad.SetVibration(PlayerIndex.One, 0f, 0f);
+                    GamePad.SetVibration((PlayerIndex)playerIndex, 0f, 0f);
                     isVibrating = false;
                 }
             }
@@ -403,7 +403,7 @@ namespace CoinHunt
                 timePassed2 = DateTime.Now - startVibration2;
                 if (timePassed2.TotalSeconds >= 0.5f)
                 {
-                    GamePad.SetVibration(PlayerIndex.Two, 0f, 0f);
+                    GamePad.SetVibration((PlayerIndex)ScreenManager.PlayerTwo, 0f, 0f);
                     isVibrating2 = false;
                 }
             }
@@ -433,12 +433,12 @@ namespace CoinHunt
             bool gamePadDisconnected = !gamePadState.IsConnected &&
                                        input.GamePadWasConnected[playerIndex];
 
-            if (input.IsPauseGame(ControllingPlayer) || gamePadDisconnected)
+            if (input.IsPauseGame(null) || gamePadDisconnected)
             {
-                ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
+                ScreenManager.AddScreen(new PauseMenuScreen(), null);
                 ScreenManager.bloom.Enabled = false;
                 ScreenManager.bloom.Visible = false;
-                GamePad.SetVibration((PlayerIndex)playerIndex,0,0);
+                GamePad.SetVibration((PlayerIndex)playerIndex, 0, 0);
             }
             else
             {
@@ -458,8 +458,8 @@ namespace CoinHunt
             {
                 camera0SpringEnabled = !camera0SpringEnabled;
             }
-            if (input.IsNewKeyPress(Keys.X, PlayerIndex.Two, out dummy) ||
-            input.IsNewButtonPress(Buttons.Y, PlayerIndex.Two,
+            if (input.IsNewKeyPress(Keys.X, (PlayerIndex)ScreenManager.PlayerTwo, out dummy) ||
+            input.IsNewButtonPress(Buttons.Y, (PlayerIndex)ScreenManager.PlayerTwo,
             out dummy))
             {
                 camera1SpringEnabled = !camera1SpringEnabled;
@@ -479,7 +479,7 @@ namespace CoinHunt
 
             if (gameOver)
             {
-                if (input.IsMenuSelect(PlayerIndex.One, out dummy) || input.IsMenuSelect(PlayerIndex.Two, out dummy))
+                if (input.IsMenuSelect((PlayerIndex)playerIndex, out dummy) || input.IsMenuSelect((PlayerIndex)ScreenManager.PlayerTwo, out dummy))
                 {
                     LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen(),
                                                            new MainMenuScreen());

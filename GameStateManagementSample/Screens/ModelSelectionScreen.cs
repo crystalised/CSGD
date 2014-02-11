@@ -130,8 +130,8 @@ namespace CoinHunt
                 MathHelper.PiOver4, playerOneViewport.AspectRatio, 10f, 5000f);
 
             playerTwoView = Matrix.CreateLookAt(
-                new Vector3(0f, 800f, 800f), 
-                Vector3.Zero, 
+                new Vector3(0f, 800f, 800f),
+                Vector3.Zero,
                 Vector3.Up);
             playerTwoProjection = Matrix.CreatePerspectiveFieldOfView(
                 MathHelper.PiOver4, playerTwoViewport.AspectRatio, 10f, 5000f);
@@ -181,13 +181,13 @@ namespace CoinHunt
             int playerIndex = (int)ControllingPlayer.Value;
 
             KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
-            GamePadState gamePadState = input.CurrentGamePadStates[playerIndex];
+            GamePadState playerOneGamepadState = input.CurrentGamePadStates[playerIndex];
 
             // The game pauses either if the user presses the pause button, or if
             // they unplug the active gamepad. This requires us to keep track of
             // whether a gamepad was ever plugged in, because we don't want to pause
             // on PC if they are playing with a keyboard and have no gamepad at all!
-            bool gamePadDisconnected = !gamePadState.IsConnected &&
+            bool gamePadDisconnected = !playerOneGamepadState.IsConnected &&
                                        input.GamePadWasConnected[playerIndex];
 
             if (input.IsPauseGame(ControllingPlayer) || gamePadDisconnected)
@@ -199,12 +199,11 @@ namespace CoinHunt
             }
             else
             {
-                Vector2 thumbstick = gamePadState.ThumbSticks.Left;
-
+                PlayerIndex dummy;
                 // Player 1
                 if (!playerOneReady)
                 {
-                    if (input.IsSelectLeft(PlayerIndex.One) || input.IsMenuUp(PlayerIndex.One))
+                    if (input.IsSelectLeft((PlayerIndex)playerIndex) || input.IsMenuUp((PlayerIndex)playerIndex))
                     {
                         ScreenManager.soundCue = ScreenManager.soundBank.GetCue("clickCue");
                         ScreenManager.soundCue.Play();
@@ -217,7 +216,7 @@ namespace CoinHunt
                         }
                     }
 
-                    if (input.IsSelectRight(PlayerIndex.One) || input.IsMenuDown(PlayerIndex.One))
+                    if (input.IsSelectRight((PlayerIndex)playerIndex) || input.IsMenuDown((PlayerIndex)playerIndex))
                     {
                         ScreenManager.soundCue = ScreenManager.soundBank.GetCue("clickCue");
                         ScreenManager.soundCue.Play();
@@ -229,52 +228,67 @@ namespace CoinHunt
                                 playerOneModel = 0;
                         }
                     }
+
+                    if (input.IsMenuSelect((PlayerIndex)playerIndex, out dummy) || keyboardState.IsKeyDown(Keys.P))
+                    {
+                        playerOneReady = true;
+                    }
                 }
 
                 // Player 2
-                if (!playerTwoReady)
+                if (ScreenManager.PlayerTwo == -1)
                 {
-                    if (input.IsSelectLeft(PlayerIndex.Two) || input.IsMenuUp(PlayerIndex.Two))
+                    for (int i = 0; i < 4; i++)
                     {
-                        ScreenManager.soundCue = ScreenManager.soundBank.GetCue("clickCue");
-                        ScreenManager.soundCue.Play();
-
-                        if (!oldState.IsKeyDown(Keys.A))
+                        if (i != (int)ControllingPlayer)
                         {
-                            playerTwoModel--;
-                            if (playerTwoModel < 0)
-                                playerTwoModel = 2;
-                        }
-                    }
-
-                    if (input.IsSelectRight(PlayerIndex.Two) || input.IsMenuDown(PlayerIndex.Two))
-                    {
-                        ScreenManager.soundCue = ScreenManager.soundBank.GetCue("clickCue");
-                        ScreenManager.soundCue.Play();
-
-                        if (!oldState.IsKeyDown(Keys.D))
-                        {
-                            playerTwoModel++;
-                            if (playerTwoModel > 2)
-                                playerTwoModel = 0;
+                            if (input.CurrentGamePadStates[i].Buttons.Start == ButtonState.Pressed || keyboardState.IsKeyDown(Keys.Enter))
+                            {
+                                ScreenManager.PlayerTwo = i;
+                            }
                         }
                     }
                 }
-
-                PlayerIndex dummy;
-
-                if (input.IsMenuSelect(PlayerIndex.One, out dummy) || keyboardState.IsKeyDown(Keys.P))
+                else
                 {
-                    playerOneReady = true;
-                }
-                if (input.IsMenuSelect(PlayerIndex.Two, out dummy) || keyboardState.IsKeyDown(Keys.X))
-                {
-                    playerTwoReady = true;
+                    GamePadState playerTwoGamepadState = input.CurrentGamePadStates[ScreenManager.PlayerTwo];
+                    if (!playerTwoReady)
+                    {
+                        if (input.IsSelectLeft((PlayerIndex)ScreenManager.PlayerTwo) || input.IsMenuUp((PlayerIndex)ScreenManager.PlayerTwo))
+                        {
+                            ScreenManager.soundCue = ScreenManager.soundBank.GetCue("clickCue");
+                            ScreenManager.soundCue.Play();
+
+                            if (!oldState.IsKeyDown(Keys.A))
+                            {
+                                playerTwoModel--;
+                                if (playerTwoModel < 0)
+                                    playerTwoModel = 2;
+                            }
+                        }
+
+                        if (input.IsSelectRight((PlayerIndex)ScreenManager.PlayerTwo) || input.IsMenuDown((PlayerIndex)ScreenManager.PlayerTwo))
+                        {
+                            ScreenManager.soundCue = ScreenManager.soundBank.GetCue("clickCue");
+                            ScreenManager.soundCue.Play();
+
+                            if (!oldState.IsKeyDown(Keys.D))
+                            {
+                                playerTwoModel++;
+                                if (playerTwoModel > 2)
+                                    playerTwoModel = 0;
+                            }
+                        }
+                        if (input.IsMenuSelect((PlayerIndex)ScreenManager.PlayerTwo, out dummy) || keyboardState.IsKeyDown(Keys.X))
+                        {
+                            playerTwoReady = true;
+                        }
+                    }
                 }
 
                 if (playerOneReady && playerTwoReady)
                 {
-                    LoadingScreen.Load(ScreenManager, true, ControllingPlayer.Value,
+                    LoadingScreen.Load(ScreenManager, true, ControllingPlayer,
                                new GameplayScreen());
                 }
 
@@ -298,14 +312,19 @@ namespace CoinHunt
             // This game has a blue background. Why? Because!
             ScreenManager.GraphicsDevice.Clear(Color.DarkSlateGray);
 
+            SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
+
+
+            String pressStart = "Press Start";
+            Vector2 pressStartPos = new Vector2(safeArea.Bottom - 50, viewport.Height - 200);
+
             // Draw our scene with all of our viewports and their respective view/projection matrices.
             DrawScene(gameTime, playerOneViewport, playerOneView, playerOneProjection, playerOneModel);
-            DrawScene(gameTime, playerTwoViewport, playerTwoView, playerTwoProjection, playerTwoModel);
+            if (ScreenManager.PlayerTwo != -1)
+                DrawScene(gameTime, playerTwoViewport, playerTwoView, playerTwoProjection, playerTwoModel);
 
             DrawViewportEdges(playerOneViewport);
             DrawViewportEdges(playerTwoViewport);
-
-            SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
 
             Vector2 LTLocation = new Vector2(safeArea.Left + 50, safeArea.Top + 50);
             Vector2 hudText = new Vector2(safeArea.Left + 150, safeArea.Top + 75);
@@ -331,6 +350,9 @@ namespace CoinHunt
 
             spriteBatch.DrawString(infoFont, HudStr, hudText, Color.BurlyWood);
             spriteBatch.DrawString(infoFont, infoStr, infoText, Color.DeepSkyBlue);
+
+            if (ScreenManager.PlayerTwo == -1)
+                spriteBatch.DrawString(infoFont, pressStart, pressStartPos, Color.BurlyWood);
 
             if (playerOneReady)
             {

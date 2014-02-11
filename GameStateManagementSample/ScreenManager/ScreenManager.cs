@@ -55,6 +55,8 @@ namespace CoinHunt
         public AudioEmitter emitter = new AudioEmitter();
         public AudioListener listener = new AudioListener();
 
+        public int PlayerTwo = -1;
+
         //BloomEffect
         public BloomComponent bloom;
 
