@@ -707,8 +707,16 @@ namespace CoinHunt
         {
             ScreenManager.SpriteBatch.Begin();
 #if XBOX360
-            string p1Hud = playerName + "\nCoins Collected: " + p1Score;
-            string p2Hud = "Player2\nCoins Collected: " + p2Score;
+            if (PlayerIndex controllingPlayer == PlayerIndex.One) //check if first controller is player1
+            {
+                string p1Hud = playerName + "\nCoins Collected: " + p1Score;
+                string p2Hud = "Player2\nCoins Collected: " + p2Score;
+            }
+            else
+            {
+                string p1Hud = "Player1\nCoins Collected: " + p1Score;
+                string p2Hud = playerName + "\nCoins Collected: " + p2Score;
+            }
 #else
             string p1Hud = "Player 1\nCoins Collected: " + p1Score;
             string p2Hud = "Player2\nCoins Collected: " + p2Score;
