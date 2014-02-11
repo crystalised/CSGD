@@ -82,9 +82,9 @@ namespace CoinHunt
         {
             ContentManager content = ScreenManager.Game.Content;
 
-            gradientTexture = content.Load<Texture2D>("gradient");
-            aButton = content.Load<Texture2D>("ButtonA");
-            bButton = content.Load<Texture2D>("ButtonB");
+            gradientTexture = content.Load<Texture2D>("Textures/gradient");
+            aButton = content.Load<Texture2D>("Textures/ButtonA");
+            bButton = content.Load<Texture2D>("Textures/ButtonB");
         }
 
 

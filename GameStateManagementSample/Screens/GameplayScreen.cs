@@ -19,11 +19,6 @@ using Microsoft.Xna.Framework.Input;
 
 namespace CoinHunt
 {
-    /// <summary>
-    /// This screen implements the actual game logic. It is just a
-    /// placeholder to get the idea across: you'll probably want to
-    /// put some more interesting gameplay in here!
-    /// </summary>
     class GameplayScreen : GameScreen
     {
         #region Fields
@@ -457,8 +452,8 @@ namespace CoinHunt
             // Pressing the A button or key toggles the spring behavior
             // on and off 
             PlayerIndex dummy;
-            if (input.IsNewKeyPress(Keys.Z, PlayerIndex.One, out dummy) ||
-            input.IsNewButtonPress(Buttons.Y, PlayerIndex.One,
+            if (input.IsNewKeyPress(Keys.Z, (PlayerIndex)playerIndex, out dummy) ||
+            input.IsNewButtonPress(Buttons.Y, (PlayerIndex)playerIndex,
             out dummy))
             {
                 camera0SpringEnabled = !camera0SpringEnabled;
@@ -470,8 +465,8 @@ namespace CoinHunt
                 camera1SpringEnabled = !camera1SpringEnabled;
             }
 
-            if (input.IsNewKeyPress(Keys.C, PlayerIndex.One, out dummy) ||
-            input.IsNewButtonPress(Buttons.Y, PlayerIndex.One,
+            if (input.IsNewKeyPress(Keys.C, (PlayerIndex)playerIndex, out dummy) ||
+            input.IsNewButtonPress(Buttons.Y, (PlayerIndex)playerIndex,
             out dummy))
             {
                 bloomSettingsIndex = (bloomSettingsIndex + 1) %
@@ -513,7 +508,7 @@ namespace CoinHunt
 
             // This game has a black background. Why? Because!
             ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
-                                               Color.Black, 0, 0);
+                                               Color.AntiqueWhite, 0, 0);
 
             DrawScene(gameTime, playerOneViewport, camera0.View, camera0.Projection);
             DrawScene(gameTime, playerTwoViewport, camera1.View, camera1.Projection);

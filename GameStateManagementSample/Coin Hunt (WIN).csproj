@@ -157,10 +157,6 @@
       <Name>Content</Name>
       <XnaReferenceType>Content</XnaReferenceType>
     </ProjectReference>
-    <ProjectReference Include="..\ParticleSettings\ParticleSettingsWindows.csproj">
-      <Project>{0043a4d6-575a-4781-99c0-830387d0432e}</Project>
-      <Name>ParticleSettingsWindows</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
