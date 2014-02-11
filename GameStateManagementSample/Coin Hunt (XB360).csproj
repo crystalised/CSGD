@@ -69,6 +69,10 @@
     <Compile Include="Coin.cs" />
     <Compile Include="FrameRateMonitor.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Particles\ParticleEmitter.cs" />
+    <Compile Include="Particles\ParticleSystem.cs" />
+    <Compile Include="Particles\ParticleVertex.cs" />
+    <Compile Include="Particles\Projectile.cs" />
     <Compile Include="PlayerIndexEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenManager\GameScreen.cs" />
@@ -129,6 +133,10 @@
       <Project>{B7219195-3990-4557-87D7-856DB165635D}</Project>
       <Name>Content</Name>
       <XnaReferenceType>Content</XnaReferenceType>
+    </ProjectReference>
+    <ProjectReference Include="..\ParticleSettings\ParticleSettings %28XBOX%29.csproj">
+      <Project>{6C966D0A-E0AE-4F6C-84A5-3323568AABB0}</Project>
+      <Name>ParticleSettings %28XBOX%29</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

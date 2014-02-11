@@ -59,6 +59,9 @@ namespace CoinHunt
         EnvironmentMapEffect envEffect;
         TextureCube texture;
 
+        //Particle System
+        ParticleSystem explosionParticles;
+
         Random random = new Random((int)DateTime.Now.Ticks);
 
         bool gameOver = false;
@@ -78,7 +81,7 @@ namespace CoinHunt
         bool isVibrating2 = false;
 
         //Bloom settings preset
-        int bloomSettingsIndex = 0;
+        int bloomSettingsIndex = 1;
 
         /// <summary>
         /// Constructor.
@@ -112,6 +115,11 @@ namespace CoinHunt
             blank = new Texture2D(ScreenManager.GraphicsDevice, 1, 1);
             blank.SetData(new[] { Color.White });
 
+            //Particles
+            explosionParticles = new ParticleSystem(ScreenManager.Game, content, "Particles/ExplosionSettings");
+            explosionParticles.DrawOrder = 400;
+            explosionParticles.Visible = false;
+            ScreenManager.Game.Components.Add(explosionParticles);
             #endregion
 
             #region Setup basic effect
@@ -121,10 +129,10 @@ namespace CoinHunt
             effect.LightingEnabled = true;
             effect.DirectionalLight0.Enabled = true;
             effect.DirectionalLight0.DiffuseColor = Vector3.Normalize(new Vector3(7, 7, 7));
-            effect.DirectionalLight0.Direction = Vector3.Normalize(new Vector3(0, -2.5f, 0));
+            effect.DirectionalLight0.Direction = Vector3.Normalize(new Vector3(0, -5.5f, 0));
             effect.DirectionalLight0.SpecularColor = Color.GreenYellow.ToVector3();
             effect.SpecularColor = Color.CadetBlue.ToVector3();
-            effect.SpecularPower = 20.0f;
+            effect.SpecularPower = 5.0f;
             effect.PreferPerPixelLighting = true;
             effect.FogEnabled = true;
             effect.FogColor = Color.Black.ToVector3();
@@ -337,6 +345,8 @@ namespace CoinHunt
                             ScreenManager.soundCue = ScreenManager.soundBank.GetCue("coinCue");
                             ScreenManager.soundCue.Play();
 
+                            explosionParticles.AddParticle(coinArray[c].Location, new Vector3(0, 0, 0));
+
                             coinArray[c].isAlive = false;
                             p1Score += 1;
                             coinsLeft--;
@@ -356,6 +366,8 @@ namespace CoinHunt
 
                             ScreenManager.soundCue = ScreenManager.soundBank.GetCue("coinCue");
                             ScreenManager.soundCue.Play();
+
+                            explosionParticles.AddParticle(coinArray[c].Location, new Vector3(0, 0, 0));
 
                             coinArray[c].isAlive = false;
                             p2Score += 1;
@@ -477,15 +489,15 @@ namespace CoinHunt
                 camera1SpringEnabled = !camera1SpringEnabled;
             }
 
-            if (input.IsNewKeyPress(Keys.C, (PlayerIndex)playerIndex, out dummy) ||
-            input.IsNewButtonPress(Buttons.Y, (PlayerIndex)playerIndex,
-            out dummy))
-            {
-                bloomSettingsIndex = (bloomSettingsIndex + 1) %
-                                     BloomSettings.PresetSettings.Length;
+            //if (input.IsNewKeyPress(Keys.C, (PlayerIndex)playerIndex, out dummy) ||
+            //input.IsNewButtonPress(Buttons.Y, (PlayerIndex)playerIndex,
+            //out dummy))
+            //{
+            //    bloomSettingsIndex = (bloomSettingsIndex + 1) %
+            //                         BloomSettings.PresetSettings.Length;
 
-                ScreenManager.bloom.Settings = BloomSettings.PresetSettings[bloomSettingsIndex];
-            }
+            //    ScreenManager.bloom.Settings = BloomSettings.PresetSettings[bloomSettingsIndex];
+            //}
 
             #region gameover
 
@@ -629,6 +641,9 @@ namespace CoinHunt
                     DrawModel(coinModel, coinArray[m].World, view, projection);
                 }
             }
+
+            explosionParticles.SetCamera(view, projection);
+            explosionParticles.Draw(gameTime);
 
             //Draw the ground
             DrawModel(groundModel, Matrix.Identity, view, projection, effect);

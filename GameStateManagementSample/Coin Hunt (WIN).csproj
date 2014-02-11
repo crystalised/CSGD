@@ -69,6 +69,10 @@
     <Compile Include="BloomSettings.cs" />
     <Compile Include="FrameRateMonitor.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Particles\ParticleEmitter.cs" />
+    <Compile Include="Particles\ParticleSystem.cs" />
+    <Compile Include="Particles\ParticleVertex.cs" />
+    <Compile Include="Particles\Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenManager\GameScreen.cs" />
     <Compile Include="ScreenManager\InputState.cs" />
@@ -157,6 +161,10 @@
       <Project>{B7219195-3990-4557-87D7-856DB165635D}</Project>
       <Name>Content</Name>
       <XnaReferenceType>Content</XnaReferenceType>
+    </ProjectReference>
+    <ProjectReference Include="..\ParticleSettings\ParticleSettings %28WIN%29.csproj">
+      <Project>{2aef1b32-62f0-45f3-888f-e455c1c99204}</Project>
+      <Name>ParticleSettings %28WIN%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
