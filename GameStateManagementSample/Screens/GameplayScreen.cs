@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.GamerServices;
 
 #endregion
 
@@ -22,6 +23,7 @@ namespace CoinHunt
     class GameplayScreen : GameScreen
     {
         #region Fields
+        String playerName;
 
         ContentManager content;
         SpriteFont gameFont;
@@ -426,6 +428,12 @@ namespace CoinHunt
             KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
             GamePadState gamePadState = input.CurrentGamePadStates[playerIndex];
 
+            SignedInGamer gamer = Gamer.SignedInGamers[playerIndex]; 
+            if (gamer != null) 
+                playerName = gamer.Gamertag; 
+            else 
+                Guide.ShowSignIn(1, false);
+
             // The game pauses either if the user presses the pause button, or if
             // they unplug the active gamepad. This requires us to keep track of
             // whether a gamepad was ever plugged in, because we don't want to pause
@@ -699,8 +707,8 @@ namespace CoinHunt
         {
             ScreenManager.SpriteBatch.Begin();
 #if XBOX360
-            string p1Hud = "Coins Collected: " + p1Score + ScreenManager.displayName(PlayerIndex.One);
-            string p2Hud = "Coins Collected: " + p2Score + ScreenManager.displayName(PlayerIndex.Two);
+            string p1Hud = playerName + "\nCoins Collected: " + p1Score;
+            string p2Hud = "Player2\nCoins Collected: " + p2Score;
 #else
             string p1Hud = "Player 1\nCoins Collected: " + p1Score;
             string p2Hud = "Player2\nCoins Collected: " + p2Score;
